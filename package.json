@@ -37,7 +37,7 @@
   "author": "Tech on Tires, LLC <tech@on.tires>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/drausal/gohighlevel-mcp.git"
+    "url": "git+https://github.com/drausal/gohighlevel-mcp.git"
   },
   "homepage": "https://github.com/drausal/gohighlevel-mcp#readme",
   "bugs": {
