@@ -1,7 +1,8 @@
 // server-http.mjs
 import http from "node:http";
 import { spawn } from "node:child_process";
-import { parse as parseUrl } from "node:url";
+import { URL } from "node:url";
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -94,10 +95,12 @@ process.on("SIGINT", shutdown);
 
 // HTTP Server
 const server = http.createServer((req, res) => {
-  const url = parseUrl(req.url || "", true);
+const urlObj = new URL(req.url || "/", `http://${req.headers.host}`);
+const pathname = urlObj.pathname;
+
 
   // POST /mcp — JSON-RPC request
-  if (req.method === "POST" && url.pathname === "/mcp") {
+  if (req.method === "POST" && pathname === "/mcp") {
     let body = "";
 
     req.on("data", (chunk) => {
